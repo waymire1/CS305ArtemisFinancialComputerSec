@@ -1,2 +1,14 @@
-# CS305ArtemisFinancialComputerSec
-Software security project for CS 305 where we made software for Artemis Financial more secure.
+# CS 305 Portfolio — Artemis Financial Practices for Secure Software Report
+
+Artemis Financial was a consulting company that builds individual financial plans for its customers, covering things like savings, retirement, investments, and insurance. They wanted to modernize their operations and make sure their custom software used current and effective security. The specific issue they wanted me to address was adding a file verification step to their web application so that data transferred through it could be verified with a checksum and secure communication.
+
+What I did well was figuring out which areas of the code actually needed attention and matching the right tool to each problem. I recommended SHA-256 for the checksum because it resists collisions, and I converted the application from HTTP to HTTPS so the data would be encrypted in transit. Coding securely matters because the software a developer writes is usually only a small part of the overall code base, and the rest is locked away in libraries. If those libraries or the communication channel are not secure, the whole application is at risk. For a company like Artemis Financial that handles sensitive financial data, security adds real value because it protects their clients and their reputation.
+
+The part of the vulnerability assessment that was most challenging was getting the OWASP dependency check to actually run. I had to upgrade the plugin version, configure an NVD API key, and disable the OSS Index analyzer to get past the errors. Once it ran, reviewing the report and understanding which vulnerabilities came from existing libraries versus my own code was the helpful part.
+
+I increased the layers of security by adding HTTPS with a self-signed certificate and by implementing the SHA-256 checksum. In the future I would use the OWASP dependency check again to assess vulnerabilities, along with reviewing the actual CVE details for each finding to decide whether it needs to be fixed, suppressed, or accepted.
+To make sure the code was functional and secure, I ran the application and confirmed it started without errors, then I manually reviewed the code I added. After refactoring, I ran the dependency check again to confirm that I had not introduced any new vulnerabilities. The vulnerabilities in the report came from libraries that were already in the project, not from the code I added.
+
+The resources and practices that will help me in the future are the OWASP dependency check, the Java Keytool for generating certificates, and the general DevSecOps practice of running security testing as part of the build instead of after deployment. Knowing how to set up HTTPS and use Java's MessageDigest class are also things I will use again.
+
+What I would show a future employer from this assignment is the Practices for Secure Software Report. It shows that I can take an existing application, find the security gaps, recommend the right encryption and verification methods, implement them, and verify the result with static testing.
